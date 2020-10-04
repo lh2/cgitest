@@ -1,0 +1,15 @@
+image: alpine/edge
+packages:
+    - git
+secrets:
+    # ~/.ssh/known_hosts
+    # Could be done without an actual secret, but it seems somewhat nicer
+    # this way
+    - 47b4ed2e-4913-403d-8e8a-85d29f3445e3
+    # SSH private key
+    - 354a00e4-31cc-4ea5-9883-e40c18531d5e
+tasks:
+    - mirror: |
+        cd cgitest
+        git remote set-url origin git@github.com:lh2/cgitest.git
+        git push --mirror
